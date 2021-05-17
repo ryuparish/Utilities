@@ -1,0 +1,56 @@
+######################################################################################################################################################## 
+            Imports of important items used for Machine Learning, Data Visualization, and Information Mining
+########################################################################################################################################################
+
+import pandas as pd
+import numpy as np
+from IPython.display import display
+from collections import namedtuple
+
+############################ Data visualizations #################################
+import seaborn as sns
+import matplotlib.pyplot as plt
+##################################################################################
+
+########################### Machine learning imports #################################
+
+#Preprocessing
+from sklearn.preprocessing import LabelEncoder # label encoder for our categorical data
+from sklearn.model_selection import train_test_split # Data splitting into train and validation sets
+
+#Classifiers
+from sklearn.linear_model import LogisticRegression # Logistic Regression
+from sklearn.ensemble import RandomForestClassifier # Random Forest
+from sklearn.tree import DecisionTreeClassifier # Decision tree
+import xgboost # Xgboost
+
+#Accuracy Metric
+from sklearn.metrics import accuracy_score # To calculate accuracies
+
+#####################################################################################
+
+########################### Deep learning imports (PyTorch) #########################
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.autograd import Variable
+#####################################################################################
+
+######################### Checking for missing values in a dataframe #######################################
+
+# Searching for missing values and what they look like¬
+def·missing_values(df):¬
+
+    # Collects all the values that are null, returns a dataframe with the counted null values for each row¬
+    missingvals = df.isnull().sum().sort_values(ascending = False)
+
+    # Making sure all the zero missing categories are removed from the missing values display¬
+    missingvals = missingvals[missingvals > 0]
+
+    # Dividing each missing value sum by the total values of each column that included a missing value¬
+    ratio = missingvals/len(df)*100
+
+    # Concatenating the ratio list and the summed list¬
+    outputdf = pd.concat([missingvals, ratio], axis=1, keys=['Total missing values', 'Percentage Missing'])
+    return outputdf
+
