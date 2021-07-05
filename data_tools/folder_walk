@@ -1,0 +1,8 @@
+for name, subdirs, files in os.walk(path):
+    indent = len(Path(name).parts) - len(path.parts)
+    print("    " * indent + Path(name).parts[-1] + os.sep)
+    for index, filename in enumerate(sorted(files)):
+        if index == 3:
+            print("    " * (indent + 1) + "...")
+            break
+        print("    " * (indent + 1) + filename)
